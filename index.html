@@ -1,353 +1,1588 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Osagie Benjamin | Digital Marketing & Growth Specialist</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
-        
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #020617;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Osagie Benjamin — Digital Marketing Specialist</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230a0a08'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia%2C serif' font-size='22' font-weight='400' fill='%23c4954a' letter-spacing='1'%3EOB%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-        .glass-nav {
-            background: rgba(2, 6, 23, 0.8);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(30, 41, 59, 0.5);
-        }
+<style>
+  :root {
+    --black: #0a0a08;
+    --cream: #f5f0e8;
+    --warm-white: #faf8f4;
+    --gold: #c4954a;
+    --gold-light: #e8bc78;
+    --charcoal: #1e1e1a;
+    --muted: #6b6860;
+    --border: rgba(196,149,74,0.2);
+  }
 
-        .tab-active {
-            background-color: #4f46e5;
-            color: white;
-            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.4);
-        }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        .tab-inactive {
-            color: #94a3b8;
-        }
+  html { scroll-behavior: smooth; }
 
-        .tab-inactive:hover {
-            color: white;
-        }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--black);
+    color: var(--cream);
+    overflow-x: hidden;
+    cursor: none;
+  }
 
-        .hidden-tab {
-            display: none;
-        }
+  /* CUSTOM CURSOR */
+  .cursor {
+    position: fixed;
+    width: 8px; height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 36px; height: 36px;
+    border: 1px solid rgba(196,149,74,0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: all 0.25s ease;
+  }
+  body:hover .cursor-ring { opacity: 1; }
 
-        .animate-fade-in {
-            animation: fadeIn 0.5s ease-out forwards;
-        }
+  /* NOISE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9997;
+    opacity: 0.6;
+  }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 60px;
+    mix-blend-mode: normal;
+  }
+  nav::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(10,10,8,0.95) 0%, transparent 100%);
+    pointer-events: none;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    color: var(--cream);
+    text-transform: uppercase;
+    position: relative;
+  }
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+    position: relative;
+  }
+  .nav-links a {
+    color: rgba(245,240,232,0.5);
+    text-decoration: none;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 140px 60px 80px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.3s forwards;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 40px; height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(4rem, 7vw, 7rem);
+    font-weight: 300;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.5s forwards;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-tagline {
+    font-size: 1rem;
+    font-weight: 300;
+    color: rgba(245,240,232,0.6);
+    line-height: 1.7;
+    max-width: 380px;
+    margin-bottom: 60px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.7s forwards;
+  }
+
+  .hero-cta-group {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.9s forwards;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 36px;
+    background: var(--gold);
+    color: var(--black);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gold-light);
+    transform: translateX(-101%);
+    transition: transform 0.3s ease;
+  }
+  .btn-primary:hover::before { transform: translateX(0); }
+  .btn-primary span { position: relative; z-index: 1; }
+
+  .btn-outline {
+    color: rgba(245,240,232,0.6);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(245,240,232,0.2);
+    padding-bottom: 2px;
+    transition: all 0.3s;
+  }
+  .btn-outline:hover { color: var(--gold); border-color: var(--gold); }
+
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-right::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, var(--black) 0%, transparent 30%);
+    z-index: 1;
+  }
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    filter: grayscale(20%) contrast(1.05);
+    opacity: 0;
+    animation: fadeIn 1.5s ease 0.8s forwards;
+  }
+
+  .hero-stats {
+    position: absolute;
+    bottom: 80px;
+    right: 60px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    opacity: 0;
+    animation: fadeUp 1s ease 1.1s forwards;
+  }
+  .stat {
+    text-align: right;
+    border-right: 1px solid var(--gold);
+    padding-right: 20px;
+  }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.4);
+    margin-top: 4px;
+  }
+
+  /* SCROLL INDICATOR */
+  .scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 60px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    z-index: 2;
+    opacity: 0;
+    animation: fadeIn 1s ease 1.5s forwards;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s ease infinite;
+  }
+  .scroll-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.3);
+    writing-mode: vertical-rl;
+  }
+
+  /* SECTIONS */
+  section { position: relative; }
+
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 80px;
+  }
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ABOUT */
+  .about {
+    padding: 140px 60px;
+    background: var(--charcoal);
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  /* Profile Photo */
+  .about-photo-col {
+    position: relative;
+  }
+  .about-photo-wrap {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+  }
+  .about-photo {
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    filter: grayscale(15%) contrast(1.05);
+    transition: filter 0.5s;
+  }
+  .about-photo-wrap:hover .about-photo { filter: grayscale(0%) contrast(1.08); }
+  .about-photo-border {
+    position: absolute;
+    top: 18px; left: 18px;
+    right: -18px; bottom: -18px;
+    border: 1px solid var(--border);
+    pointer-events: none;
+    z-index: -1;
+    transition: border-color 0.4s;
+  }
+  .about-photo-wrap:hover .about-photo-border { border-color: var(--gold); }
+  .about-photo-tag {
+    position: absolute;
+    bottom: -18px;
+    right: -18px;
+    background: var(--gold);
+    color: var(--black);
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 100px;
+  }
+  .photo-tag-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 1;
+  }
+  .photo-tag-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 4px;
+    opacity: 0.8;
+  }
+
+  /* About bio */
+  .about-body {
+    font-size: 1.05rem;
+    font-weight: 300;
+    line-height: 1.85;
+    color: rgba(245,240,232,0.75);
+  }
+  .about-body strong {
+    color: var(--cream);
+    font-weight: 400;
+  }
+  .about-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 8px;
+  }
+  .about-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid var(--border);
+    padding: 8px 16px;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .about-badge:hover {
+    border-color: var(--gold);
+    background: rgba(196,149,74,0.08);
+  }
+
+  /* SERVICES */
+  .services {
+    padding: 140px 60px;
+    background: var(--black);
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    margin-top: 0;
+  }
+  .service-card {
+    background: var(--black);
+    padding: 52px 44px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.4s;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 1px;
+    background: var(--gold);
+    transition: width 0.4s ease;
+  }
+  .service-card:hover { background: rgba(196,149,74,0.04); }
+  .service-card:hover::before { width: 100%; }
+
+  .service-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    margin-bottom: 32px;
+    display: block;
+  }
+  .service-icon {
+    font-size: 1.8rem;
+    margin-bottom: 24px;
+    display: block;
+  }
+  .service-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.7rem;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .service-desc {
+    font-size: 0.85rem;
+    line-height: 1.75;
+    color: rgba(245,240,232,0.45);
+    font-weight: 300;
+  }
+
+  /* PROCESS */
+  .process {
+    padding: 140px 60px;
+    background: var(--charcoal);
+    overflow: hidden;
+  }
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    margin-top: 80px;
+    position: relative;
+  }
+  .process-steps::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: var(--border);
+  }
+  .process-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+  }
+  .step-dot {
+    width: 56px; height: 56px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 28px;
+    background: var(--charcoal);
+    position: relative;
+    z-index: 1;
+    transition: background 0.3s;
+  }
+  .step-dot:hover { background: var(--gold); }
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    color: var(--gold);
+  }
+  .step-dot:hover .step-num { color: var(--black); }
+  .step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-bottom: 12px;
+  }
+  .step-desc {
+    font-size: 0.75rem;
+    line-height: 1.7;
+    color: rgba(245,240,232,0.4);
+  }
+
+  /* WORK */
+  .work {
+    padding: 140px 60px;
+    background: var(--black);
+  }
+  .work-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--border);
+    margin-top: 80px;
+  }
+  .work-card {
+    background: var(--black);
+    padding: 60px;
+    position: relative;
+    overflow: hidden;
+    min-height: 420px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    transition: transform 0.4s ease;
+  }
+  .work-card:hover { transform: scale(1.01); z-index: 2; }
+
+  .work-card-bg {
+    position: absolute;
+    inset: 0;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    opacity: 0.12;
+    transition: opacity 0.4s;
+    filter: grayscale(60%);
+  }
+  .work-card:hover .work-card-bg { opacity: 0.2; }
+
+  .work-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10,10,8,0.98) 40%, rgba(10,10,8,0.5) 100%);
+  }
+  .work-content { position: relative; z-index: 1; }
+  .work-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .work-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  .work-desc {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: rgba(245,240,232,0.55);
+    max-width: 380px;
+    margin-bottom: 32px;
+  }
+  .work-metrics {
+    display: flex;
+    gap: 32px;
+  }
+  .metric { }
+  .metric-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .metric-key {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.35);
+    margin-top: 4px;
+  }
+
+  .work-card-wide {
+    grid-column: span 2;
+    min-height: 320px;
+  }
+
+  /* EMAIL RESULTS */
+  .results {
+    padding: 140px 60px;
+    background: var(--charcoal);
+  }
+  .results-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+  }
+  .results-text { }
+  .results-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 4vw, 3.8rem);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 28px;
+  }
+  .results-headline em { font-style: italic; color: var(--gold); }
+  .results-body {
+    font-size: 0.95rem;
+    line-height: 1.85;
+    color: rgba(245,240,232,0.6);
+    margin-bottom: 48px;
+  }
+  .results-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .r-stat {
+    padding: 28px;
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .r-stat::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s ease;
+  }
+  .r-stat:hover::after { transform: scaleX(1); }
+  .r-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .r-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.4);
+  }
+
+  .results-chart {
+    position: relative;
+  }
+  .chart-box {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    padding: 40px;
+    position: relative;
+  }
+  .chart-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 32px;
+  }
+  .chart-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    height: 180px;
+  }
+  .bar-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    height: 100%;
+    justify-content: flex-end;
+  }
+  .bar {
+    width: 100%;
+    background: linear-gradient(to top, var(--gold), var(--gold-light));
+    border-radius: 1px 1px 0 0;
+    min-height: 8px;
+    transition: height 1.5s ease;
+    opacity: 0.85;
+  }
+  .bar:hover { opacity: 1; }
+  .bar-month {
+    font-size: 0.55rem;
+    letter-spacing: 0.08em;
+    color: rgba(245,240,232,0.25);
+  }
+
+  /* INSTAGRAM SHOWCASE */
+  .showcase {
+    padding: 140px 60px;
+    background: var(--black);
+  }
+  .showcase-intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    margin-bottom: 80px;
+    align-items: end;
+  }
+  .showcase-body {
+    font-size: 0.95rem;
+    line-height: 1.85;
+    color: rgba(245,240,232,0.55);
+    align-self: end;
+  }
+
+  .ig-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3px;
+  }
+  .ig-item {
+    aspect-ratio: 1;
+    overflow: hidden;
+    position: relative;
+    cursor: none;
+  }
+  .ig-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(30%) contrast(1.05);
+    transition: filter 0.4s, transform 0.5s ease;
+  }
+  .ig-item:hover img {
+    filter: grayscale(0%) contrast(1.1);
+    transform: scale(1.06);
+  }
+  .ig-item-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10,10,8,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .ig-item:hover .ig-item-overlay { opacity: 1; }
+  .ig-brand-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* VISION */
+  .vision {
+    padding: 140px 60px;
+    background: var(--charcoal);
+    position: relative;
+    overflow: hidden;
+  }
+  .vision::before {
+    content: 'GROWTH';
+    position: absolute;
+    right: -80px;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20vw;
+    font-weight: 300;
+    color: rgba(196,149,74,0.03);
+    white-space: nowrap;
+    pointer-events: none;
+    line-height: 1;
+  }
+  .vision-inner {
+    max-width: 800px;
+    position: relative;
+    z-index: 1;
+  }
+  .vision-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    font-weight: 300;
+    line-height: 1.4;
+    margin-bottom: 60px;
+    color: var(--cream);
+  }
+  .vision-quote em { font-style: italic; color: var(--gold); }
+  .vision-points {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+  .vision-point {
+    padding: 28px;
+    border-left: 1px solid var(--border);
+    padding-left: 28px;
+    transition: border-color 0.3s;
+  }
+  .vision-point:hover { border-color: var(--gold); }
+  .vp-title {
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .vp-text {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: rgba(245,240,232,0.5);
+  }
+
+  /* CONTACT */
+  .contact {
+    padding: 140px 60px;
+    background: var(--black);
+    position: relative;
+    overflow: hidden;
+  }
+  .contact::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(196,149,74,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: start;
+  }
+  .contact-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 5rem);
+    font-weight: 300;
+    line-height: 0.95;
+    margin-bottom: 40px;
+  }
+  .contact-headline em { font-style: italic; color: var(--gold); }
+  .contact-sub {
+    font-size: 0.9rem;
+    line-height: 1.75;
+    color: rgba(245,240,232,0.5);
+    margin-bottom: 56px;
+  }
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: rgba(245,240,232,0.6);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .contact-link:hover { color: var(--gold); }
+  .contact-link-icon {
+    width: 40px; height: 40px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .contact-link:hover .contact-link-icon {
+    border-color: var(--gold);
+    background: rgba(196,149,74,0.1);
+  }
+  .contact-right {
+    padding-top: 24px;
+  }
+  .availability {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    border: 1px solid rgba(74,196,100,0.3);
+    margin-bottom: 48px;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(74,196,100,0.8);
+  }
+  .avail-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(74,196,100,0.8);
+    animation: pulse 2s ease infinite;
+  }
+  .contact-detail-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .cd-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .cd-key {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.3);
+  }
+  .cd-val {
+    font-size: 0.85rem;
+    color: rgba(245,240,232,0.7);
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 40px 60px;
+    background: var(--charcoal);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border);
+  }
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    color: rgba(245,240,232,0.4);
+    text-transform: uppercase;
+  }
+  .footer-copy {
+    font-size: 0.7rem;
+    color: rgba(245,240,232,0.25);
+    letter-spacing: 0.05em;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 1; transform: scaleY(1); }
+    50% { opacity: 0.4; transform: scaleY(0.7); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 24px 30px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { position: absolute; inset: 0; z-index: 0; }
+    .hero-left {
+      z-index: 2;
+      padding: 120px 30px 80px;
+      background: linear-gradient(to right, rgba(10,10,8,0.95) 60%, transparent);
+    }
+    .hero-stats { right: 30px; }
+    .about, .services, .process, .work, .results, .showcase, .vision, .contact { padding: 80px 30px; }
+    .about-grid, .results-inner, .showcase-intro, .contact-inner { grid-template-columns: 1fr; gap: 60px; }
+    .about-photo { max-width: 100%; }
+    .about-photo-border { right: -10px; bottom: -10px; top: 10px; left: 10px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .process-steps::before { display: none; }
+    .work-grid { grid-template-columns: 1fr; }
+    .work-card-wide { grid-column: span 1; }
+    .ig-grid { grid-template-columns: repeat(2, 1fr); }
+    .vision-points { grid-template-columns: 1fr; }
+    .results-stats { grid-template-columns: 1fr 1fr; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
 </head>
-<body class="text-slate-100 selection:bg-indigo-500/30">
+<body>
 
-    <!-- Navigation -->
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-6">
-        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
-            <div class="text-xl font-bold tracking-tighter flex items-center gap-2">
-                <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-sm">OB</div>
-                <span>OSAGIE BENJAMIN</span>
-            </div>
-            <div class="hidden md:flex gap-8 text-sm font-medium text-slate-400">
-                <a href="#work" class="hover:text-white transition-colors">Experience</a>
-                <a href="#services" class="hover:text-white transition-colors">Expertise</a>
-                <a href="#process" class="hover:text-white transition-colors">Process</a>
-            </div>
-            <a href="mailto:osagie.benjamin01@gmail.com" class="bg-white text-slate-950 px-5 py-2 rounded-full text-sm font-bold hover:bg-indigo-500 hover:text-white transition-all">
-                Let's Scale
-            </a>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Osagie Benjamin</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Digital Marketing Specialist</div>
+    <h1 class="hero-name">
+      Osagie<br>
+      <em>Benjamin</em>
+    </h1>
+    <p class="hero-tagline">
+      Growth strategist turning ideas into impact through creative storytelling, data-driven campaigns, and vibrant digital communities.
+    </p>
+    <div class="hero-cta-group">
+      <a href="#work" class="btn-primary"><span>View My Work</span></a>
+      <a href="#contact" class="btn-outline">Let's Collaborate</a>
+    </div>
+
+    <div class="scroll-indicator">
+      <div class="scroll-line"></div>
+      <span class="scroll-text">Scroll to explore</span>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <img src="IMG_1746.PNG" alt="Osagie Benjamin" class="hero-image">
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">4+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">30%</div>
+        <div class="stat-label">Engagement Boost</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">96%</div>
+        <div class="stat-label">Customer Satisfaction</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-divider reveal">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Who I Am</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="about-grid">
+    <!-- Profile Image Column -->
+    <div class="about-photo-col reveal">
+      <div class="about-photo-wrap">
+        <img src="IMG_1746.PNG" alt="Osagie Benjamin" class="about-photo">
+        <div class="about-photo-border"></div>
+        <div class="about-photo-tag">
+          <span class="photo-tag-num">4+</span>
+          <span class="photo-tag-label">Years of Impact</span>
         </div>
-    </nav>
+      </div>
+    </div>
+    <!-- Bio Column -->
+    <div class="about-body reveal">
+      <p>I'm a <strong>Digital Marketing Specialist and Growth Strategist</strong> with over four years of experience helping brands grow through creative storytelling and data-driven strategies.</p>
+      <br>
+      <p>I've built vibrant online communities that <strong>boosted engagement by 30%</strong>, improved customer satisfaction by 96%, and delivered campaigns that turn ideas into real business growth.</p>
+      <br>
+      <p>Passionate about driving impact, I thrive on creating digital experiences that <strong>connect, convert, and leave a lasting impression.</strong></p>
+      <br>
+      <div class="about-badges">
+        <span class="about-badge">Strategy</span>
+        <span class="about-badge">Content</span>
+        <span class="about-badge">Community</span>
+        <span class="about-badge">Email Marketing</span>
+        <span class="about-badge">Paid Ads</span>
+        <span class="about-badge">Analytics</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Hero Section -->
-    <header class="relative pt-32 pb-20 md:pt-48 md:pb-32 px-6 overflow-hidden">
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[500px] bg-indigo-600/10 blur-[120px] rounded-full -z-10"></div>
-        <div class="max-w-7xl mx-auto text-center">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-xs font-semibold text-indigo-400 mb-6 uppercase tracking-widest">
-                <i data-lucide="trending-up" class="w-3 h-3"></i> Growth & Performance Specialist
-            </div>
-            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-8 leading-[1.1]">
-                I help FinTechs & E-com <br>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-white to-indigo-400">Brands Scale Faster.</span>
-            </h1>
-            <p class="max-w-2xl mx-auto text-lg md:text-xl text-slate-400 mb-10 leading-relaxed">
-                Over 4 years of turning data into growth. Specialist in paid ads, conversion strategy, and storytelling for high-growth startups like <span class="text-white font-medium text-indigo-300">Credpal</span> and <span class="text-white font-medium text-indigo-300">VFD Bank</span>.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#work" class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-xl font-bold flex items-center justify-center gap-2 transition-all group">
-                    View Case Studies <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/benjamin-osagie-m/" target="_blank" class="bg-slate-900 border border-slate-800 hover:border-slate-700 text-white px-8 py-4 rounded-xl font-bold transition-all flex items-center justify-center gap-2">
-                    <i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn Profile
-                </a>
-            </div>
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-divider reveal">
+    <span class="section-num">02</span>
+    <h2 class="section-title">What I Do</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <span class="service-num">001</span>
+      <span class="service-icon">◈</span>
+      <h3 class="service-name">Digital Marketing Strategy</h3>
+      <p class="service-desc">End-to-end campaign planning and brand positioning. I build strategies that connect with audiences and drive measurable results.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-num">002</span>
+      <span class="service-icon">◎</span>
+      <h3 class="service-name">Content & Campaign Planning</h3>
+      <p class="service-desc">Data-driven editorial calendars, brand voice development, and multi-platform content that converts browsers into buyers.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-num">003</span>
+      <span class="service-icon">◐</span>
+      <h3 class="service-name">Social Media Management</h3>
+      <p class="service-desc">Community building, engagement optimization, and visual storytelling that grows audiences and strengthens brand identity.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-num">004</span>
+      <span class="service-icon">◉</span>
+      <h3 class="service-name">Email Marketing</h3>
+      <p class="service-desc">Automated flows, newsletters, and segmented campaigns that nurture leads and generate consistent revenue.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-num">005</span>
+      <span class="service-icon">◈</span>
+      <h3 class="service-name">Paid Ad Strategy</h3>
+      <p class="service-desc">Targeted campaigns across Meta and Google that expand reach, generate quality leads, and deliver strong ROI.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-num">006</span>
+      <span class="service-icon">◇</span>
+      <h3 class="service-name">Growth Analytics</h3>
+      <p class="service-desc">Engagement reporting, A/B testing, and performance tracking that turns data into actionable growth opportunities.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+  <div class="section-divider reveal">
+    <span class="section-num">03</span>
+    <h2 class="section-title">My Process</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="process-steps">
+    <div class="process-step reveal">
+      <div class="step-dot"><span class="step-num">1</span></div>
+      <h4 class="step-title">Discovery</h4>
+      <p class="step-desc">Brand goals, audience insights & voice alignment</p>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-dot"><span class="step-num">2</span></div>
+      <h4 class="step-title">Research</h4>
+      <p class="step-desc">Competitor analysis & keyword opportunities</p>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-dot"><span class="step-num">3</span></div>
+      <h4 class="step-title">Planning</h4>
+      <p class="step-desc">Editorial calendar & campaign scheduling</p>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-dot"><span class="step-num">4</span></div>
+      <h4 class="step-title">Execution</h4>
+      <p class="step-desc">Content production & campaign launch</p>
+    </div>
+    <div class="process-step reveal">
+      <div class="step-dot"><span class="step-num">5</span></div>
+      <h4 class="step-title">Optimization</h4>
+      <p class="step-desc">Report, review & continuously refine</p>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="work" id="work">
+  <div class="section-divider reveal">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Selected Work</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="work-grid">
+    <!-- Rovello -->
+    <div class="work-card reveal">
+      <img src="IMG_3524.PNG" alt="Rovello" class="work-card-bg">
+      <div class="work-card-overlay"></div>
+      <div class="work-content">
+        <div class="work-tag">Premium Accessories · Lagos</div>
+        <div class="work-brand">Rovello</div>
+        <p class="work-desc">Developed and managed social media content, design, and ad campaigns for this premium shoes, bags & accessories brand. Built visual identity and grew follower base from 0 to 539 with high-quality editorial content.</p>
+        <div class="work-metrics">
+          <div class="metric">
+            <div class="metric-val">539</div>
+            <div class="metric-key">Followers Built</div>
+          </div>
+          <div class="metric">
+            <div class="metric-val">69</div>
+            <div class="metric-key">Posts Created</div>
+          </div>
         </div>
-    </header>
+      </div>
+    </div>
 
-    <!-- Brand Logos -->
-    <section class="py-12 border-y border-slate-900 bg-slate-950/50">
-        <div class="max-w-7xl mx-auto px-6">
-            <p class="text-center text-slate-500 text-sm font-medium uppercase tracking-[0.2em] mb-10">Trusted by market leaders</p>
-            <div class="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-60 grayscale hover:grayscale-0 transition-all">
-                <div class="text-2xl font-black text-white tracking-tighter">CredPal</div>
-                <div class="text-2xl font-black text-white tracking-tighter">VFD Microfinance</div>
-                <div class="text-2xl font-black text-white tracking-tighter">Ecomwing</div>
-                <div class="text-2xl font-black text-white tracking-tighter">Rovello</div>
-            </div>
+    <!-- AllThingsMen -->
+    <div class="work-card reveal">
+      <img src="IMG_3521.PNG" alt="AllThingsMen" class="work-card-bg">
+      <div class="work-card-overlay"></div>
+      <div class="work-content">
+        <div class="work-tag">Fashion Brand · Ikeja, Lagos</div>
+        <div class="work-brand">AllThingsMen.ng</div>
+        <p class="work-desc">Managed end-to-end social media content and ad campaigns for this menswear brand. Created visuals and copy that boosted engagement and strengthened the brand's online presence with 68.6K followers.</p>
+        <div class="work-metrics">
+          <div class="metric">
+            <div class="metric-val">68.6K</div>
+            <div class="metric-key">Followers</div>
+          </div>
+          <div class="metric">
+            <div class="metric-val">4,656</div>
+            <div class="metric-key">Posts</div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
 
-    <!-- Stats Section -->
-    <section class="py-20 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="p-8 rounded-3xl bg-slate-900/50 border border-slate-800 text-center hover:border-indigo-500/50 transition-all group">
-                    <div class="text-4xl md:text-5xl font-black text-indigo-400 mb-2 group-hover:scale-110 transition-transform">35.46%</div>
-                    <div class="text-sm font-bold text-white mb-1">Email Open Rate</div>
-                    <div class="text-xs text-slate-500 uppercase tracking-wider">Industry Avg: 21%</div>
-                </div>
-                <div class="p-8 rounded-3xl bg-slate-900/50 border border-slate-800 text-center hover:border-indigo-500/50 transition-all group">
-                    <div class="text-4xl md:text-5xl font-black text-indigo-400 mb-2 group-hover:scale-110 transition-transform">+30%</div>
-                    <div class="text-sm font-bold text-white mb-1">Engagement Boost</div>
-                    <div class="text-xs text-slate-500 uppercase tracking-wider">Across social channels</div>
-                </div>
-                <div class="p-8 rounded-3xl bg-slate-900/50 border border-slate-800 text-center hover:border-indigo-500/50 transition-all group">
-                    <div class="text-4xl md:text-5xl font-black text-indigo-400 mb-2 group-hover:scale-110 transition-transform">96%</div>
-                    <div class="text-sm font-bold text-white mb-1">Customer Sat.</div>
-                    <div class="text-xs text-slate-500 uppercase tracking-wider">Brand trust score</div>
-                </div>
-                <div class="p-8 rounded-3xl bg-slate-900/50 border border-slate-800 text-center hover:border-indigo-500/50 transition-all group">
-                    <div class="text-4xl md:text-5xl font-black text-indigo-400 mb-2 group-hover:scale-110 transition-transform">73%</div>
-                    <div class="text-sm font-bold text-white mb-1">List Growth</div>
-                    <div class="text-xs text-slate-500 uppercase tracking-wider">Year-over-year</div>
-                </div>
-            </div>
+    <!-- CredPal -->
+    <div class="work-card work-card-wide reveal">
+      <img src="IMG_3525.PNG" alt="CredPal" class="work-card-bg">
+      <div class="work-card-overlay"></div>
+      <div class="work-content">
+        <div class="work-tag">Fintech · Lagos, Nigeria · Social Media Content</div>
+        <div class="work-brand">CredPal</div>
+        <p class="work-desc">Created bold, conversion-focused content for this fintech brand — helping communicate their credit, savings, and bill-payment services to a 10.7K Instagram audience through scroll-stopping graphics, campaign copy, and product storytelling.</p>
+        <div class="work-metrics">
+          <div class="metric">
+            <div class="metric-val">10.7K</div>
+            <div class="metric-key">Followers</div>
+          </div>
+          <div class="metric">
+            <div class="metric-val">705</div>
+            <div class="metric-key">Posts</div>
+          </div>
+          <div class="metric">
+            <div class="metric-val">Finance</div>
+            <div class="metric-key">Industry</div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
 
-    <!-- Case Studies Section -->
-    <section id="work" class="py-24 px-6 relative">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-                <div class="max-w-2xl">
-                    <h2 class="text-4xl font-bold mb-4">The Scaling Narrative</h2>
-                    <p class="text-slate-400">Proven results in FinTech acquisition and E-commerce growth strategies.</p>
-                </div>
-                <div class="flex bg-slate-900 p-1 rounded-xl border border-slate-800">
-                    <button id="btn-fintech" onclick="switchTab('fintech')" class="px-6 py-2 rounded-lg text-sm font-bold transition-all tab-active">
-                        FinTech Growth
-                    </button>
-                    <button id="btn-ecom" onclick="switchTab('ecom')" class="px-6 py-2 rounded-lg text-sm font-bold transition-all tab-inactive">
-                        E-com Scaling
-                    </button>
-                </div>
-            </div>
-
-            <!-- FinTech Tabs -->
-            <div id="tab-fintech" class="grid md:grid-cols-2 gap-8 animate-fade-in">
-                <div class="group relative rounded-3xl bg-slate-900 border border-slate-800 p-8 flex flex-col justify-between hover:border-indigo-500 transition-all">
-                    <div>
-                        <div class="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center mb-6">
-                            <i data-lucide="shield-check" class="text-indigo-400"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-4">Credpal Acquisition</h3>
-                        <p class="text-slate-400 mb-6">Scaled user acquisition through targeted Meta ads and funnel optimization, focusing on low CAC and high-quality credit applicants.</p>
-                        <ul class="space-y-2 mb-8">
-                            <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-green-500"></i> Multi-channel Ad Strategy</li>
-                            <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-green-500"></i> High-converting landing pages</li>
-                            <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-green-500"></i> CAC Optimization</li>
-                        </ul>
-                    </div>
-                    <div class="h-48 bg-slate-950 rounded-2xl border border-slate-800 flex items-center justify-center text-slate-700 text-xs font-mono tracking-widest uppercase">
-                        [ Credpal Growth Dashboard ]
-                    </div>
-                </div>
-                <div class="group relative rounded-3xl bg-slate-900 border border-slate-800 p-8 flex flex-col justify-between hover:border-indigo-500 transition-all">
-                    <div>
-                        <div class="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center mb-6">
-                            <i data-lucide="monitor" class="text-indigo-400"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-4">VFD Bank Growth</h3>
-                        <p class="text-slate-400 mb-6">Implemented app-install campaigns and community strategies to drive consistent active user growth for VFD's digital banking suite.</p>
-                        <ul class="space-y-2 mb-8">
-                            <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-green-500"></i> App Store Optimization</li>
-                            <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-green-500" /> Retention Marketing</li>
-                            <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-green-500" /> Performance Tracking</li>
-                        </ul>
-                    </div>
-                    <div class="h-48 bg-slate-950 rounded-2xl border border-slate-800 flex items-center justify-center text-slate-700 text-xs font-mono tracking-widest uppercase">
-                        [ VFD Performance Analytics ]
-                    </div>
-                </div>
-            </div>
-
-            <!-- Ecom Tabs -->
-            <div id="tab-ecom" class="grid md:grid-cols-2 gap-8 animate-fade-in hidden-tab">
-                <div class="group relative rounded-3xl bg-slate-900 border border-slate-800 p-8 flex flex-col justify-between hover:border-indigo-500 transition-all">
-                    <div>
-                        <div class="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center mb-6">
-                            <i data-lucide="shopping-cart" class="text-indigo-400"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-4">E-com Inventory Scaling</h3>
-                        <p class="text-slate-400 mb-6">Developed a "Momentum Framework" for lifestyle brands: keeping stock moving while maintaining viral ad profitability.</p>
-                        <ul class="space-y-2 mb-8">
-                            <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-green-500"></i> ROAS-focused Ads</li>
-                            <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-green-500"></i> Email Automation</li>
-                            <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-green-500" /> Inventory Logic</li>
-                        </ul>
-                    </div>
-                    <div class="h-48 bg-slate-950 rounded-2xl border border-slate-800 flex items-center justify-center text-slate-700 text-xs font-mono tracking-widest uppercase">
-                        [ Ecomwing Revenue Stats ]
-                    </div>
-                </div>
-                <div class="group relative rounded-3xl bg-slate-900 border border-slate-800 p-8 flex flex-col justify-between hover:border-indigo-500 transition-all">
-                    <div>
-                        <div class="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center mb-6">
-                            <i data-lucide="users" class="text-indigo-400"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-4">Rovello Social Strategy</h3>
-                        <p class="text-slate-400 mb-6">Created high-aesthetic visual storytelling for Rovello and AllThingsMen, resulting in a 30% boost in organic engagement.</p>
-                        <ul class="space-y-2 mb-8">
-                            <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-green-500"></i> Lifestyle Content Design</li>
-                            <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-green-500"></i> Community Management</li>
-                            <li class="flex items-center gap-2 text-sm text-slate-300"><i data-lucide="check-circle-2" class="w-4 h-4 text-green-500" /> Viral Hook Testing</li>
-                        </ul>
-                    </div>
-                    <div class="h-48 bg-slate-950 rounded-2xl border border-slate-800 flex items-center justify-center text-slate-700 text-xs font-mono tracking-widest uppercase">
-                        [ Rovello Content Grid ]
-                    </div>
-                </div>
-            </div>
+    <!-- Ecomwing -->
+    <div class="work-card work-card-wide reveal">
+      <div class="work-card-overlay" style="background: linear-gradient(to top, rgba(10,10,8,0.98) 50%, rgba(10,10,8,0.6) 100%);"></div>
+      <div class="work-content">
+        <div class="work-tag">E-commerce · Community Engagement & Growth</div>
+        <div class="work-brand">Ecomwing</div>
+        <p class="work-desc">Built an active online community, increased engagement through strategic content, social media management, and email marketing campaigns. Maintained a 78% response rate while running targeted ad campaigns to expand the email list.</p>
+        <div class="work-metrics">
+          <div class="metric">
+            <div class="metric-val">+30%</div>
+            <div class="metric-key">Engagement Boost</div>
+          </div>
+          <div class="metric">
+            <div class="metric-val">96%</div>
+            <div class="metric-key">Customer Satisfaction</div>
+          </div>
+          <div class="metric">
+            <div class="metric-val">78%</div>
+            <div class="metric-key">Response Rate</div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Services Section -->
-    <section id="services" class="py-24 px-6 bg-slate-900/30">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">Core Expertise</h2>
-                <p class="text-slate-400 max-w-2xl mx-auto">Bridging the gap between creative storytelling and hard analytics to deliver business results.</p>
-            </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="p-10 rounded-3xl bg-slate-900/50 border border-slate-800 hover:border-indigo-500/50 transition-all hover:-translate-y-2">
-                    <div class="mb-6"><i data-lucide="target" class="w-10 h-10 text-indigo-400"></i></div>
-                    <h3 class="text-xl font-bold mb-3">Paid Ad Strategy</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Scaling FinTech and E-com brands via high-ROAS Facebook, Instagram, and Google campaigns.</p>
-                </div>
-                <div class="p-10 rounded-3xl bg-slate-900/50 border border-slate-800 hover:border-indigo-500/50 transition-all hover:-translate-y-2">
-                    <div class="mb-6"><i data-lucide="bar-chart-3" class="w-10 h-10 text-indigo-400"></i></div>
-                    <h3 class="text-xl font-bold mb-3">Performance Marketing</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Data-driven growth focusing on user acquisition, conversion funnels, and retention optimization.</p>
-                </div>
-                <div class="p-10 rounded-3xl bg-slate-900/50 border border-slate-800 hover:border-indigo-500/50 transition-all hover:-translate-y-2">
-                    <div class="mb-6"><i data-lucide="zap" class="w-10 h-10 text-indigo-400"></i></div>
-                    <h3 class="text-xl font-bold mb-3">Content & Copy</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Persuasive storytelling that turns scrolls into clicks and clicks into loyal, high-LTV customers.</p>
-                </div>
-            </div>
+<!-- EMAIL RESULTS -->
+<section class="results" id="results">
+  <div class="results-inner">
+    <div class="results-text">
+      <div class="section-divider reveal" style="margin-bottom: 48px;">
+        <span class="section-num">05</span>
+        <h2 class="section-title" style="font-size: clamp(2rem,3.5vw,3.2rem);">Email Flow Results</h2>
+        <div class="section-line"></div>
+      </div>
+      <p class="results-headline reveal">
+        <em>Data-driven</em><br>email that converts
+      </p>
+      <p class="results-body reveal">
+        Over a 12-month period, structured planning, strong copywriting, and continuous optimization delivered remarkable newsletter growth. These aren't vanity metrics — they represent real audience relationships built through value-first content.
+      </p>
+      <div class="results-stats reveal">
+        <div class="r-stat">
+          <div class="r-val">867</div>
+          <div class="r-label">Total Contacts</div>
         </div>
-    </section>
-
-    <!-- Process Section -->
-    <section id="process" class="py-24 px-6">
-        <div class="max-w-7xl mx-auto text-center">
-            <h2 class="text-4xl font-bold mb-16">My Growth Process</h2>
-            <div class="grid md:grid-cols-5 gap-8">
-                <div class="relative group">
-                    <div class="text-6xl font-black text-slate-900 mb-4 transition-colors group-hover:text-indigo-900/30">01</div>
-                    <h3 class="text-lg font-bold mb-2">Discovery</h3>
-                    <p class="text-slate-500 text-sm">Deep dive into brand goals, audience, and voice.</p>
-                </div>
-                <div class="relative group">
-                    <div class="text-6xl font-black text-slate-900 mb-4 transition-colors group-hover:text-indigo-900/30">02</div>
-                    <h3 class="text-lg font-bold mb-2">Research</h3>
-                    <p class="text-slate-500 text-sm">Competitor analysis and keyword insights.</p>
-                </div>
-                <div class="relative group">
-                    <div class="text-6xl font-black text-slate-900 mb-4 transition-colors group-hover:text-indigo-900/30">03</div>
-                    <h3 class="text-lg font-bold mb-2">Planning</h3>
-                    <p class="text-slate-500 text-sm">Editorial calendars & campaign scheduling.</p>
-                </div>
-                <div class="relative group">
-                    <div class="text-6xl font-black text-slate-900 mb-4 transition-colors group-hover:text-indigo-900/30">04</div>
-                    <h3 class="text-lg font-bold mb-2">Execution</h3>
-                    <p class="text-slate-500 text-sm">Content production and precise launch.</p>
-                </div>
-                <div class="relative group">
-                    <div class="text-6xl font-black text-slate-900 mb-4 transition-colors group-hover:text-indigo-900/30">05</div>
-                    <h3 class="text-lg font-bold mb-2">Optimization</h3>
-                    <p class="text-slate-500 text-sm">Report, review, and refine for ROI.</p>
-                </div>
-            </div>
+        <div class="r-stat">
+          <div class="r-val">73%</div>
+          <div class="r-label">List Growth</div>
         </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="py-24 px-6">
-        <div class="max-w-5xl mx-auto rounded-[3rem] bg-gradient-to-br from-indigo-600 to-indigo-900 p-12 md:p-20 text-center relative overflow-hidden shadow-2xl">
-            <h2 class="text-4xl md:text-5xl font-black text-white mb-6 relative z-10">Ready to scale your <br>digital presence?</h2>
-            <p class="text-indigo-100 text-lg mb-10 max-w-xl mx-auto relative z-10">Let's collaborate on high-impact strategies that drive measurable business growth.</p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center relative z-10">
-                <a href="mailto:osagie.benjamin01@gmail.com" class="bg-white text-indigo-900 px-8 py-4 rounded-xl font-bold hover:bg-slate-100 transition-all flex items-center justify-center gap-2">
-                    <i data-lucide="mail" class="w-5 h-5"></i> Email Me
-                </a>
-                <a href="https://www.linkedin.com/in/benjamin-osagie-m/" target="_blank" class="bg-indigo-950/40 text-white border border-indigo-400/30 px-8 py-4 rounded-xl font-bold hover:bg-indigo-950/60 transition-all flex items-center justify-center gap-2">
-                    <i data-lucide="linkedin" class="w-5 h-5"></i> LinkedIn
-                </a>
-            </div>
+        <div class="r-stat">
+          <div class="r-val">35.46%</div>
+          <div class="r-label">Avg Open Rate</div>
         </div>
-    </section>
+        <div class="r-stat">
+          <div class="r-val">367</div>
+          <div class="r-label">New Contacts</div>
+        </div>
+      </div>
+    </div>
 
-    <footer class="py-12 px-6 border-t border-slate-900 text-center text-slate-500 text-sm">
-        <p>© 2026 Osagie Benjamin. Digital Marketing & Growth Strategy.</p>
-    </footer>
+    <div class="results-chart reveal">
+      <div class="chart-box">
+        <div class="chart-label">Email Opens — 12 Month Growth</div>
+        <div class="chart-bars" id="chartBars">
+          <div class="bar-group"><div class="bar" style="height:18%"></div><div class="bar-month">Jan</div></div>
+          <div class="bar-group"><div class="bar" style="height:26%"></div><div class="bar-month">Feb</div></div>
+          <div class="bar-group"><div class="bar" style="height:32%"></div><div class="bar-month">Mar</div></div>
+          <div class="bar-group"><div class="bar" style="height:28%"></div><div class="bar-month">Apr</div></div>
+          <div class="bar-group"><div class="bar" style="height:45%"></div><div class="bar-month">May</div></div>
+          <div class="bar-group"><div class="bar" style="height:55%"></div><div class="bar-month">Jun</div></div>
+          <div class="bar-group"><div class="bar" style="height:62%"></div><div class="bar-month">Jul</div></div>
+          <div class="bar-group"><div class="bar" style="height:85%"></div><div class="bar-month">Aug</div></div>
+          <div class="bar-group"><div class="bar" style="height:78%"></div><div class="bar-month">Sep</div></div>
+          <div class="bar-group"><div class="bar" style="height:82%"></div><div class="bar-month">Oct</div></div>
+          <div class="bar-group"><div class="bar" style="height:80%"></div><div class="bar-month">Nov</div></div>
+          <div class="bar-group"><div class="bar" style="height:72%"></div><div class="bar-month">Dec</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script>
-        // Initialize Lucide Icons
-        lucide.createIcons();
+<!-- INSTAGRAM SHOWCASE -->
+<section class="showcase">
+  <div class="showcase-intro">
+    <div class="section-divider reveal" style="margin-bottom:0;">
+      <span class="section-num">06</span>
+      <h2 class="section-title">Content Showcase</h2>
+      <div class="section-line"></div>
+    </div>
+    <p class="showcase-body reveal">
+      A curated look at the social media content and brand visuals created for fashion, lifestyle, and fintech clients across Nigeria and beyond.
+    </p>
+  </div>
+  <div class="ig-grid">
+    <div class="ig-item reveal">
+      <img src="IMG_3520.PNG" alt="AllThingsMen Content">
+      <div class="ig-item-overlay"><span class="ig-brand-label">allthingsmen.ng</span></div>
+    </div>
+    <div class="ig-item reveal">
+      <img src="/mnt/user-data/uploads/IMG_3521.PNG" alt="AllThingsMen Feed">
+      <div class="ig-item-overlay"><span class="ig-brand-label">allthingsmen.ng</span></div>
+    </div>
+    <div class="ig-item reveal">
+      <img src="IMG_3522.PNG" alt="Rovello Profile">
+      <div class="ig-item-overlay"><span class="ig-brand-label">rovellohq</span></div>
+    </div>
+    <div class="ig-item reveal">
+      <img src="IMG_3523.PNG" alt="Rovello Feed">
+      <div class="ig-item-overlay"><span class="ig-brand-label">rovellohq</span></div>
+    </div>
+    <div class="ig-item reveal">
+      <img src="IMG_3524.PNG" alt="CredPal Content">
+      <div class="ig-item-overlay"><span class="ig-brand-label">credpalhq</span></div>
+    </div>
+    <div class="ig-item reveal">
+      <img src="/mnt/user-data/uploads/IMG_3525.PNG" alt="CredPal Feed">
+      <div class="ig-item-overlay"><span class="ig-brand-label">credpalhq</span></div>
+    </div>
+    <div class="ig-item reveal" style="grid-column: span 2;">
+      <img src="IMG_1746.PNG" alt="Osagie Benjamin" style="object-position: top;">
+      <div class="ig-item-overlay"><span class="ig-brand-label">Osagie Benjamin</span></div>
+    </div>
+  </div>
+</section>
 
-        // Navbar Scroll Effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('glass-nav');
-                navbar.classList.remove('py-6');
-                navbar.classList.add('py-4');
-            } else {
-                navbar.classList.remove('glass-nav');
-                navbar.classList.add('py-6');
-                navbar.classList.remove('py-4');
-            }
-        });
+<!-- VISION -->
+<section class="vision">
+  <div class="vision-inner">
+    <div class="section-divider reveal" style="margin-bottom: 60px;">
+      <span class="section-num">07</span>
+      <h2 class="section-title">Where I'm Going</h2>
+      <div class="section-line"></div>
+    </div>
+    <p class="vision-quote reveal">
+      "My long-term goal: build a <em>digital growth and content studio</em> that helps ecommerce owners scale through strategy, storytelling, and data-driven marketing."
+    </p>
+    <div class="vision-points">
+      <div class="vision-point reveal">
+        <div class="vp-title">Performance Marketing</div>
+        <p class="vp-text">Growing into advanced paid ads, conversion optimization, and full-funnel strategy mastery.</p>
+      </div>
+      <div class="vision-point reveal">
+        <div class="vp-title">SEO & Storytelling</div>
+        <p class="vp-text">Exploring deeper SEO integration and narrative-led content for cohesive digital experiences.</p>
+      </div>
+      <div class="vision-point reveal">
+        <div class="vp-title">Brand Partnerships</div>
+        <p class="vp-text">Partnering with brands focused on growth, community, and meaningful audience engagement.</p>
+      </div>
+      <div class="vision-point reveal">
+        <div class="vp-title">Digital Studio</div>
+        <p class="vp-text">Building a creative studio to help ecommerce brands scale through smart marketing systems.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-        // Tab Switching Logic
-        function switchTab(type) {
-            const btnFintech = document.getElementById('btn-fintech');
-            const btnEcom = document.getElementById('btn-ecom');
-            const tabFintech = document.getElementById('tab-fintech');
-            const tabEcom = document.getElementById('tab-ecom');
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div>
+      <div class="section-divider reveal" style="margin-bottom: 48px;">
+        <span class="section-num">08</span>
+        <div class="section-line"></div>
+      </div>
+      <h2 class="contact-headline reveal">
+        Let's<br><em>build</em><br>something.
+      </h2>
+      <p class="contact-sub reveal">
+        Ready to grow your brand's digital presence? I'd love to hear about your project and explore how we can create real impact together.
+      </p>
+      <div class="contact-links reveal">
+        <a href="/cdn-cgi/l/email-protection#ff908c9e98969ad19d9a91959e929691cfcebf98929e9693d19c9092" class="contact-link">
+          <div class="contact-link-icon">✉</div>
+          <span class="__cf_email__" data-cfemail="c9a6baa8aea0ace7abaca7a3a8a4a0a7f9f889aea4a8a0a5e7aaa6a4">[email&#160;protected]</span>
+        </a>
+        <a href="https://www.linkedin.com/in/benjamin-osagie-m/" target="_blank" class="contact-link">
+          <div class="contact-link-icon">in</div>
+          linkedin.com/in/benjamin-osagie-m
+        </a>
+      </div>
+    </div>
 
-            if (type === 'fintech') {
-                btnFintech.className = 'px-6 py-2 rounded-lg text-sm font-bold transition-all tab-active';
-                btnEcom.className = 'px-6 py-2 rounded-lg text-sm font-bold transition-all tab-inactive';
-                tabFintech.classList.remove('hidden-tab');
-                tabEcom.classList.add('hidden-tab');
-            } else {
-                btnEcom.className = 'px-6 py-2 rounded-lg text-sm font-bold transition-all tab-active';
-                btnFintech.className = 'px-6 py-2 rounded-lg text-sm font-bold transition-all tab-inactive';
-                tabEcom.classList.remove('hidden-tab');
-                tabFintech.classList.add('hidden-tab');
-            }
-        }
-    </script>
+    <div class="contact-right reveal">
+      <div class="availability">
+        <div class="avail-dot"></div>
+        Available for new projects
+      </div>
+      <div class="contact-detail-grid">
+        <div class="cd-item">
+          <span class="cd-key">Specialization</span>
+          <span class="cd-val">Digital Marketing & Growth</span>
+        </div>
+        <div class="cd-item">
+          <span class="cd-key">Experience</span>
+          <span class="cd-val">4+ Years</span>
+        </div>
+        <div class="cd-item">
+          <span class="cd-key">Based In</span>
+          <span class="cd-val">Nigeria</span>
+        </div>
+        <div class="cd-item">
+          <span class="cd-key">Industries</span>
+          <span class="cd-val">Fashion, Fintech, E-commerce</span>
+        </div>
+        <div class="cd-item">
+          <span class="cd-key">Languages</span>
+          <span class="cd-val">English</span>
+        </div>
+        <div class="cd-item">
+          <span class="cd-key">Work Type</span>
+          <span class="cd-val">Remote / Contract / Full-time</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Osagie Benjamin · Digital Marketing Specialist</div>
+  <div class="footer-copy">© 2026 · All rights reserved</div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+  });
+
+  function animRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animRing);
+  }
+  animRing();
+
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      ring.style.width = '56px';
+      ring.style.height = '56px';
+      ring.style.borderColor = 'rgba(196,149,74,0.8)';
+    });
+    el.addEventListener('mouseleave', () => {
+      ring.style.width = '36px';
+      ring.style.height = '36px';
+      ring.style.borderColor = 'rgba(196,149,74,0.5)';
+    });
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 80);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  reveals.forEach(el => obs.observe(el));
+</script>
 </body>
 </html>
